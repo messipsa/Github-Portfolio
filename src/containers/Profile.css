@@ -1,0 +1,23 @@
+.Profile_container
+{
+    width : 50%;
+    margin : 10px auto;
+}
+
+.Profile_avatar
+{
+    width : 150px;
+}
+
+.Profile_container > ul 
+{
+    list-style : none;
+    text-align: left;
+    padding : 0;
+}
+
+.Profile_container > ul > li 
+{
+    display : flex;
+    justify-content: space-between;
+}
