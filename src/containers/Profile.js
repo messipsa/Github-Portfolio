@@ -23,12 +23,13 @@ class Profile extends Component{
             loading:true,
             repositories : [],
             data : {},
+            error : '',
         }
     }
 
     async componentDidMount()
     {
-       
+       try{
         const profile = await 
         fetch('https://api.github.com/users/messipsa');
         const ProfileJson = await profile.json();
@@ -47,14 +48,22 @@ class Profile extends Component{
             )
         }
     }
+    catch(error)
+    {
+        this.setState({
+            loading : false,
+            error : error.message,
+        });
+    }
+}
 
     render()
     {
-        const {data , loading , repositories} = this.state;
-        if(loading)
+        const {data , loading , repositories ,error} = this.state;
+        if(loading || error)
         {
             return(
-                <div>Loading.....</div>
+                <div>{loading? 'Loading.....' : error }</div>
             );
         }
 
