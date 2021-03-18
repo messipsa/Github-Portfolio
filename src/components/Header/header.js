@@ -10,7 +10,7 @@ display : flex;
 flex-direction : column;
 align-items : center;
 justify-content : center;
-font-size : calc(2px+2vmin);
+font-size : calc(10px+2vmin);
 color : white;
 `;
 
