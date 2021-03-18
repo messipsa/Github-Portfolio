@@ -1,5 +1,6 @@
 import React , {Component} from 'react';
 import Link from "../components/Link/Link";
+import List from "../components/List/List";
 import "./Profile.css";
 
 class Profile extends Component{
@@ -15,6 +16,7 @@ class Profile extends Component{
 
     async componentDidMount()
     {
+       
         const profile = await 
         fetch('https://api.github.com/users/messipsa');
         const ProfileJson = await profile.json();
@@ -39,36 +41,51 @@ class Profile extends Component{
                 <div>Loading.....</div>
             );
         }
+
+        const items = [
+           {
+               id : 1,
+            label : 'html_url ',
+            value : 
+                <Link url={data.html_url} title =" Github URL" />
+           },
+           {
+               id : 2,
+              label : 'repos_url',
+              value : data.repos_url,
+           },
+           {
+               id : 3,
+            label : 'name',
+            value : 'Messipsa Maxim',
+         },
+         {
+             id : 4,
+            label : 'company',
+            value : data.company,
+         },
+         {
+             id : 5,
+            label : 'location',
+            value : data.location,
+         },
+         {
+            label : 'email',
+            value : 'im_tamazouzt'+'@'+'esi.dz',
+         },
+         {
+             id : 6,
+            label : 'bio',
+            value :'Messipsa a CS Student at Esi',
+         },
+        ]
+
+       
         return (
             <div className="Profile-container">
 
                 <img className="Profile_avatar" src={data.avatar_url} alt="avatar" />
-                  <ul>
-                      <li>
-                      <strong>avatar_url </strong> : {data.avatar_url}
-                      </li>
-                      <li>
-                      <strong> html_url </strong> : {data.html_url}
-                      </li>
-                      <li>
-                      <strong>repos_url </strong> : {data.repos_url}
-                      </li>
-                      <li>
-                      <strong>name </strong>: {data.name}
-                      </li>
-                      <li>
-                         <strong>company </strong>  : {data.company}
-                      </li>
-                      <li>
-                          <strong>location </strong> : {data.location}
-                      </li>
-                      <li>
-                          <strong> email </strong>: {data.email}
-                      </li>
-                      <li>
-                         < strong>bio </strong> : {data.bio}
-                      </li>
-                  </ul>
+                 <List items={items} />
             </div>
         );
     }
